@@ -13,7 +13,7 @@ def dead(character):
         exit(0)
     # enemy dead
     else:
-        print(f"{character.name} points: {character.hp}/{character.hp_max}")
+        print(f"Health points {character.name}: {character.hp}/{character.hp_max}")
         print(f"{character.name} is dead. You win!")
         print("")
         experience.exp(character.ep)

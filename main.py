@@ -302,7 +302,6 @@ def story_wake_up():
         choice = input("> ").lower()
         if "eat" in choice:
             health_points.health(heal_items.green_leaf.heal, characters.player)
-            print(f"Your health points: {characters.player.hp}/{characters.player.hp_max}.")
             break
         elif "bag" in choice:
             print("\" Thank you. I will use it later.\"")
