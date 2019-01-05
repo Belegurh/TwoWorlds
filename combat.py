@@ -3,7 +3,8 @@ import random
 import health_points
 import weapons
 import characters
-
+import demage
+import time
 
 # 0 = normal combat flee-mode
 # 1 = story flee-mode Dev Lands
@@ -58,7 +59,7 @@ def aktion_player(enemy):
 def attack_player(weapon, enemy):
     print("")
     print(f"You attack the {enemy.name} with '{weapon.name}'!")
-    health_points.health(weapon.demage, enemy)
+    health_points.health(demage.rnd_dmg(characters.player, weapons.applied_weapon), enemy)
     print("_____________________________________________________________")
     input("Press Enter to countinue...")
     if enemy.hp > 0:
@@ -76,9 +77,12 @@ def attack_player(weapon, enemy):
 def attack_enemy(enemy): #characters.hellhound
     print("")
     print(f"{enemy.name} attacks with \"{enemy.weapon}\".")
-    health_points.health(enemy.demage, characters.player)
+    health_points.health(demage.rnd_dmg(enemy, weapons.weapon_enemy_1), characters.player)
     print("_____________________________________________________________")
-    aktion_player(enemy)
+    if flee_mode == 1 and characters.player.hp < 10:
+        lost()
+    else:
+        aktion_player(enemy)
 
 
 # player, flee
@@ -87,3 +91,9 @@ def flee_player():
         print("You flee in panic. You crash down a hill and lose your consciousness!")
     else:
         print("Normal cambat flee-mode. Program me please!!")
+
+
+def lost():
+    print("The Hellhound strikes you so hard that you lose your consciousness.")
+    print("You fell to the ground. The last thing you can see is the attacking Hellhound... Blood splashes to the ground!")
+    time.sleep(5)
