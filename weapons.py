@@ -11,5 +11,5 @@ class Weapons:
         self.demage = demage
 
 # instances
-branch = Weapons("Branch", 2.4, -20)
+branch = Weapons("Branch", 2.4, -5)
 # claw = Weapons("Claw", 2.4, -5)

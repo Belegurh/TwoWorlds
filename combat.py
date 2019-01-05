@@ -12,10 +12,10 @@ flee_mode = 0
 
 # initialize fight
 def init_fight(num_fighter, enemy):
-    print(" _____________________")
-    print("|                     |")
-    print("| <<< Combat Mode >>> |")
-    print("|_____________________|")
+    print(" ________________________")
+    print("|                        |")
+    print("| <<< Combat Mode On >>> |")
+    print("|________________________|")
     print("")
     start_fight(num_fighter, enemy)
 
@@ -40,14 +40,16 @@ def start_fight(num_fighter, enemy):
 def aktion_player(enemy):
     while True:
         print("")
-        print("Make a move! 'attack' or 'flee'?")
-        choice = input("> ")
+        print("Make a move! 'attack', 'flee' or 'uses item'?")
+        choice = input("> ").lower()
         if "attack" in choice:
             attack_player(weapons.applied_weapon, enemy)
             break
         elif "flee" in choice:
             flee_player()
             break
+        elif "item" in choice:
+            print("Are you kidding me? I'm not programed yet! Just attack, you coward!")
         else:
             continue
 
@@ -59,7 +61,15 @@ def attack_player(weapon, enemy):
     health_points.health(weapon.demage, enemy)
     print("_____________________________________________________________")
     input("Press Enter to countinue...")
-    attack_enemy(enemy)
+    if enemy.hp > 0:
+        attack_enemy(enemy)
+    else:
+        print(" __________________________")
+        print("|                          |")
+        print("| <<< Combat Mode Off >>>  |")
+        print("|__________________________|")
+        print("")
+        input("Press Enter to countinue...")
 
 
 # enemy, attack
@@ -74,6 +84,6 @@ def attack_enemy(enemy): #characters.hellhound
 # player, flee
 def flee_player():
     if flee_mode == 1:
-        print("")
+        print("You flee in panic. You crash down a hill and lose your consciousness!")
     else:
-        print("normal cambat flee-mode. Program me please!!")
+        print("Normal cambat flee-mode. Program me please!!")

@@ -423,7 +423,7 @@ def pass_dev_land():
             combat.flee_mode = 1
             weapons.applied_weapon = weapons.branch
             combat.init_fight(2, characters.hellhound)
-            flee_dev_land()
+            hidden_village()
         elif "flee" in choice:
             flee_dev_land()
         else:
@@ -432,14 +432,15 @@ def pass_dev_land():
 
 def flee_dev_land():
     print("You flee in panic. You crash down a hill and lose your consciousness!")
-    time.sleep(10)
-    print("")
     hidden_village()
 
 
 
 def hidden_village():
+    time.sleep(10)
+    print("")
     print("You open your eyes. You lay in a bed. Don't know what happend to you.")
+    
 
 # when flee lose consciousness, wake up later in the hidden village. They tell you the story. Viana and you were rescued.
 # when attack, you lose against the enemy and you and vaiana will be rescued. Same story as flee.
@@ -449,8 +450,9 @@ def hidden_village():
     print("")
     print(">>> to be continued ... <<<")
     print("")
+    time.sleep(10)
 
     exit(0)
 
 
-start()
+pass_dev_land()

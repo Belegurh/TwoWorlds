@@ -3,7 +3,6 @@ import char_dead
 
 # change health points. if hp > hp_max, hp = hp_max. Insert the additional hp as argument
 def health(change_hp, character):
-
     if ((character.hp + change_hp) <= character.hp_max) and (character.hp + change_hp > 0):
         character.hp += change_hp
         if change_hp >= 0:
