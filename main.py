@@ -485,4 +485,4 @@ def hidden_village():
     exit(0)
 
 
-pass_dev_land()
+start()
