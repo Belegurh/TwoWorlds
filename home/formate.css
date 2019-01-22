@@ -1,0 +1,63 @@
+﻿body { 
+  background-image: url("img/hintergrundbild.jpg"); 	/*Hintergrundbild*/
+}
+
+h1 {
+  color: white;						/*Schriftfarbe h1*/
+}	
+
+p {
+  color: white;
+  font-size: 1.5em; 
+  text-align: justify;					/*blocksatz*/ 
+  font-family: sans-serif; 				/*Schriftart*/
+}
+
+nav ul {					
+  font-family: Georgia, serif;				/*Schriftart für Liste im Hauptmenü*/
+  font-size: 1.7em;					/*Schriftgröße für Liste im Hauptmenü*/
+}
+
+nav a {
+  text-decoration: none;				/*Entfernt den Unterstrich von den links*/
+  color: gold;						/*Schriftfarbe für links*/
+  padding-right: 10px;					/*Abstabd rechts von den links*/
+  padding-left: 15px;					/*Abstabd links von den links*/
+}
+
+
+nav li a:hover,						/*Wenn cursor über link*/
+nav li a:active,					/*Wenn link aktiv*/
+nav li#current a:link,					/*Aktueller link*/
+nav li#current a:visited {				/*Wenn link bereits besucht wurde*/
+  color: grey;						/*nav li Element grau*/
+}								
+
+nav li {						
+  display: inline-block;				/*Ordne nav li Elemente horizontal an */
+  border-left: 0.1px solid gold				/*Jeder Punkte hat einen seitlichen Strich*/
+}
+
+nav li:first-child { 					
+  border-left: none;					/*Der erste li Punkt hat keinen Strich*/
+}
+
+nav #play_button {
+  padding-left: 40em;
+  border-left: none; 
+}
+
+button {
+  height: 30px;               
+  width: 80px;
+  font-size: 0.7em
+}
+
+#status {						/*div-Bereich Status*/
+  border-width: medium;					/*Rahmen mit mittlerer Strichstärke*/
+  border-style: solid;					/*Durchgezogener Strich*/
+  border-color: silver;					/*Farbe*/
+  font-family: Georgia, serif;				/*Schriftart*/
+  padding-left: 1.7em;					/*Rand links*/
+  padding-right: 1.7em;					/*Rand rechts*/
+}
