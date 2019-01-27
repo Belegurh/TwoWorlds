@@ -3,7 +3,7 @@ import random
 import health_points
 import weapons
 import characters
-import demage
+import damage
 import time
 
 # 0 = normal combat flee-mode
@@ -59,7 +59,7 @@ def aktion_player(enemy):
 def attack_player(weapon, enemy):
     print("")
     print(f"You attack the {enemy.name} with '{weapon.name}'!")
-    health_points.health(demage.rnd_dmg(characters.player, weapons.applied_weapon), enemy)
+    health_points.health(damage.rnd_dmg(characters.player, weapons.applied_weapon), enemy)
     print("_____________________________________________________________")
     input("Press Enter to countinue...")
     if enemy.hp > 0:
@@ -77,7 +77,7 @@ def attack_player(weapon, enemy):
 def attack_enemy(enemy): #characters.hellhound
     print("")
     print(f"{enemy.name} attacks with \"{enemy.weapon}\".")
-    health_points.health(demage.rnd_dmg(enemy, weapons.weapon_enemy_1), characters.player)
+    health_points.health(damage.rnd_dmg(enemy, weapons.weapon_enemy_1), characters.player)
     print("_____________________________________________________________")
     if flee_mode == 1 and characters.player.hp < 10:
         lost()

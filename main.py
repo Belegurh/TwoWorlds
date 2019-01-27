@@ -124,32 +124,8 @@ class TryItemOak(Scenes):
         while True:
             item_oak = input("> ").lower()
 
-            if item_oak == "pen":
-                item_1 = FalseItemOak("pen")
-                item_1.fail()
-                return 6
-            elif item_oak == "sandwich":
-                item_1 = FalseItemOak("sandwich")
-                item_1.fail()
-                return 6
-            elif item_oak == "penny":
-                item_1 = FalseItemOak("penny")
-                item_1.fail()
-                return 6
-            elif item_oak == "bottle":
-                item_1 = FalseItemOak("bottle")
-                item_1.fail()
-                return 6
-            elif item_oak == "baseball":
-                item_1 = FalseItemOak("baseball")
-                item_1.fail()
-                return 6
-            elif item_oak == "used chewing gum":
-                item_1 = FalseItemOak("used chewing gum")
-                item_1.fail()
-                return 6
-            elif item_oak == "hairclip":
-                item_1 = FalseItemOak("hairclip")
+            if item_oak in bag:
+                item_1 = FalseItemOak(item_oak)
                 item_1.fail()
                 return 6
             else:
