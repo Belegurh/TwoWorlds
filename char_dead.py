@@ -1,5 +1,4 @@
 # libraries
-import health_points
 import characters
 import experience
 

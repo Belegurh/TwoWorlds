@@ -2,7 +2,6 @@
 import time
 import random
 import heal_items
-import health_points
 import experience
 import combat
 import weapons
@@ -301,7 +300,7 @@ class StoryOak(Scenes):
             You begin to lose your consciousness.
             """))
 
-        health_points.health(-10, characters.player)
+        characters.player.calc_hp(-10)
 
         print(dedent("""
             The last thing you recognize is Viana`s voice.
@@ -359,7 +358,7 @@ class StoryWakeUp(Scenes):
         while True:
             choice = input("> ").lower()
             if "eat" in choice:
-                health_points.health(heal_items.green_leaf.heal, characters.player)
+                characters.player.calc_hp(heal_items.green_leaf.heal)
                 return 13
             elif "bag" in choice:
                 print("\" Thank you. I will use it later.\"")
@@ -432,7 +431,7 @@ class LeaveOak(Scenes):
         while True:
             choice = input("> ").lower()
             if "eat" in choice:
-                health_points.health(heal_items.red_leaf.heal, characters.player)
+                characters.player.calc_hp(heal_items.red_leaf.heal)
                 break
             elif "bag" in choice:
                 print("You put the leaf in your bag.")
