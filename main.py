@@ -7,13 +7,14 @@ import experience
 import combat
 import weapons
 import characters
-from textwrap import dedent 
+from textwrap import dedent
+import inventory
 
 # lists
-bag = ["pen", "sandwich", "penny", "bottle"]
-bag_new = []
 random_item_oak = ["beautyfull leaf of the oak", "baseball", "used chewing gum", "hairclip"]
 
+
+# start screen, main menu, load next scene from save.txt
 class Scenes(object):
 
     def enter(self):
@@ -26,8 +27,26 @@ class Scenes(object):
                 | |          \ \/ /\ \/ /    |  \__/  |        \ \/ /\ \/ /    |  \__/  | | | \  \  | |____  | |__/ /   ____|  | 
                 |_|           \__/  \__/      \______/          \__/  \__/      \______/  |_|  \__\ |______| |_____/   |______/
  
-            """) 
-        return 2
+
+            """)
+
+        print(dedent("""
+                 <<< Main Menu >>>
+
+            |1: New Game | 2: Load Game |
+            """))
+
+        while True:
+            choice = input(" >")
+            if choice == "1":
+                return 2
+            elif choice == "2":
+                with open("save.txt", "r") as f:
+                    f.seek(0)
+                    return int(f.readline())
+            else:
+                print("Please choose 1 or 2")
+
 
 class Start(Scenes):
     
@@ -94,7 +113,7 @@ class Oak(Scenes):
             "It looks like a keyhole. Maybe I can stick something into it."
             You open your bag and search for something helpful.
             """))
-        print(f"\"Let's see... The following items are in my bag.\" {bag}")
+        print(f"\"Let's see... The following items are in my bag.\" {inventory.bag.list}")
         return 6 
 
 
@@ -124,12 +143,13 @@ class TryItemOak(Scenes):
         while True:
             item_oak = input("> ").lower()
 
-            if item_oak in bag:
+            if item_oak in inventory.bag.list:
                 item_1 = FalseItemOak(item_oak)
                 item_1.fail()
                 return 6
             else:
-                print(f" {item_oak} is not in your bag, please try {bag}.")
+                print(f" {item_oak} is not in your bag, please try {inventory.bag.list}.")
+
 
 class FalseItemOak(TryItemOak):
     
@@ -158,9 +178,9 @@ class SearchItemOak(Scenes):
                 choice = input("> ").lower()
 
                 if choice == "yes":
-                    bag.append(item)
+                    inventory.bag.append_item(item)
                     print("")
-                    print(f"The following items are in your bag now: {bag}")
+                    print(f"The following items are in your bag now: {inventory.bag.list}")
                     return 9
                 elif choice == "no":
                     print("ok, I will search something else.")
@@ -344,8 +364,8 @@ class StoryWakeUp(Scenes):
             elif "bag" in choice:
                 print("\" Thank you. I will use it later.\"")
                 print("You put the leaf in your bag.")
-                bag_new.append("green leaf")
-                print(f"The following items are in your bag now. {bag_new}")
+                inventory.bag_new.append_item("green leaf")
+                print(f"The following items are in your bag now. {inventory.bag_new.list}")
                 return 13
             else:
                 print("eat or bag?")
@@ -416,8 +436,8 @@ class LeaveOak(Scenes):
                 break
             elif "bag" in choice:
                 print("You put the leaf in your bag.")
-                bag_new.append("red leaf")
-                print(f"The following items are in your bag now. {bag_new}")
+                inventory.bag_new.append_item("red leaf")
+                print(f"The following items are in your bag now. {inventory.bag_new.list}")
                 break
             else:
                 print("eat or bag?")
@@ -521,6 +541,7 @@ class HiddenVillage(Scenes):
         exit(0) 
 
 
+
 class Engine(object):
 
     scenes = {1: Scenes(), 2: Start(), 3: Classroom(), 4: Toilet(), 5: Oak(), 6: ChoiceOak(), 7: TryItemOak(), 8: SearchItemOak(), 
@@ -532,16 +553,17 @@ class Engine(object):
     def __init__(self, current_scene):
         self.current_scene = current_scene
 
-    def play(self):                                               
-      while self.next_scene != 18:                                   
-          self.next_scene = self.current_scene.enter()             
-          self.current_scene = self.scenes[self.next_scene]        
+    def play(self):
+        while self.next_scene != 18:                                   
+            self.next_scene = self.current_scene.enter()         
+            self.current_scene = self.scenes[self.next_scene]
+            start.save_scene()       
 
-          
+    # save next_scene in save.txt
+    def save_scene(self):
+        with open("save.txt", "w") as f:
+            f.write(str(self.next_scene))
 
 
 start = Engine(Scenes())
-start.play()
-
-
-
+start.play() 
