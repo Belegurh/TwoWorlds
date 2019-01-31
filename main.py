@@ -9,9 +9,6 @@ import characters
 from textwrap import dedent
 import inventory
 
-# lists
-random_item_oak = ["beautyfull leaf of the oak", "baseball", "used chewing gum", "hairclip"]
-
 
 # start screen, main menu, load next scene from save.txt
 class Scenes(object):
@@ -129,9 +126,9 @@ class ChoiceOak(Scenes):
             elif choice == "no":
                 print("\"Ok, let's see if I can find something else.\"")
                 print("")
-                return 8 
+                return random_item_oak.enter() 
             else:
-                print("yes or no?")
+                print(">>>>yes or no?")
 
 
 class TryItemOak(Scenes):
@@ -164,10 +161,13 @@ class FalseItemOak(TryItemOak):
 
 
 class SearchItemOak(Scenes):
+
+    def __init__(self, list):
+        self.list = list
     
     def enter(self):
-        if len(random_item_oak) > 0:
-            item = random_item_oak.pop(random.randrange(len(random_item_oak)))
+        if len(self.list) > 0:
+            item = self.list.pop(random.randrange(len(self.list)))
 
             print("You search for other items.")
             print(f"You find a {item}.")
@@ -183,12 +183,14 @@ class SearchItemOak(Scenes):
                     return 9
                 elif choice == "no":
                     print("ok, I will search something else.")
-                    return 8
+                    return random_item_oak.enter()
                 else:
                     print("yes or no?")
         else:
             print("\"I can't find more items. Let's go back to the oak.\"")
             return 10 
+
+random_item_oak = SearchItemOak(["beautyfull leaf of the oak", "baseball", "used chewing gum", "hairclip"])
 
 
 class AdditionalItemOak(Scenes):
@@ -199,7 +201,7 @@ class AdditionalItemOak(Scenes):
             choice = input("> ").lower()
 
             if "item" in choice:
-                return 8
+                return random_item_oak.enter()
             elif "oak" in choice:
                 return 10
             else:
@@ -543,7 +545,7 @@ class HiddenVillage(Scenes):
 
 class Engine(object):
 
-    scenes = {1: Scenes(), 2: Start(), 3: Classroom(), 4: Toilet(), 5: Oak(), 6: ChoiceOak(), 7: TryItemOak(), 8: SearchItemOak(), 
+    scenes = {1: Scenes(), 2: Start(), 3: Classroom(), 4: Toilet(), 5: Oak(), 6: ChoiceOak(), 7: TryItemOak(), 
             9: AdditionalItemOak(), 10: NoItemWorks(), 11: StoryOak(), 12: StoryWakeUp(), 13: LeaveOak(), 14: PassDevland(), 
             15: FleeDevland(), 16: HiddenVillage()}
 
