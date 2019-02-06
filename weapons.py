@@ -6,10 +6,10 @@ weapon_enemy_1 = "hand"
 class Weapons:
 
     # init-method
-    def __init__(self, name, weight, demage):
+    def __init__(self, name, weight, damage):
         self.name = name
         self.weight = weight
-        self.demage = demage
+        self.demage = damage
 
 # instances
 branch = Weapons("Branch", 2.4, -3)

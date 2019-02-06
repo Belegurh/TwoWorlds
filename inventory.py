@@ -13,5 +13,3 @@ class Inventory(object):
 
 bag = Inventory(["pen", "sandwich", "penny", "bottle"], 10)
 bag_new = Inventory([], 10)
-
-print(bag.list)

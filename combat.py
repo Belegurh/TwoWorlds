@@ -58,7 +58,7 @@ def aktion_player(enemy): # characters.hellhound
 def attack_player(weapon, enemy): # weapons.applied_weapon, characters.hellhound
     print("")
     print(f"You attack the {enemy.name} with '{weapon.name}'!")
-    enemy.health(damage.rnd_dmg(characters.player, weapons.applied_weapon))
+    enemy.calc_hp(damage.rnd_dmg(characters.player, weapons.applied_weapon))
     print("_____________________________________________________________")
     input("Press Enter to countinue...")
     if enemy.hp > 0:
