@@ -1,7 +1,7 @@
 # This script tests the funcions append_item and remove_item from the module inventory.
 
 import unittest
-from inventory import Inventory
+from TwoWorlds.inventory import Inventory
 
 class TestInventory(unittest.TestCase):
 

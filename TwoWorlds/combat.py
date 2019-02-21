@@ -1,8 +1,8 @@
 # libraries
 import random
-import weapons
-import characters
-import damage
+import TwoWorlds.weapons
+import TwoWorlds.characters
+import TwoWorlds.damage
 import time
 
 # 0 = normal combat flee-mode
@@ -43,7 +43,7 @@ def aktion_player(enemy): # characters.hellhound
         print("Make a move! 'attack', 'flee' or 'uses item'?")
         choice = input("> ").lower()
         if "attack" in choice:
-            attack_player(weapons.applied_weapon, enemy)
+            attack_player(TwoWorlds.weapons.applied_weapon, enemy)
             break
         elif "flee" in choice:
             flee_player()
@@ -58,7 +58,7 @@ def aktion_player(enemy): # characters.hellhound
 def attack_player(weapon, enemy): # weapons.applied_weapon, characters.hellhound
     print("")
     print(f"You attack the {enemy.name} with '{weapon.name}'!")
-    enemy.calc_hp(damage.rnd_dmg(characters.player, weapons.applied_weapon))
+    enemy.calc_hp(TwoWorlds.damage.rnd_dmg(TwoWorlds.characters.player, TwoWorlds.weapons.applied_weapon))
     print("_____________________________________________________________")
     input("Press Enter to countinue...")
     if enemy.hp > 0:
@@ -76,9 +76,9 @@ def attack_player(weapon, enemy): # weapons.applied_weapon, characters.hellhound
 def attack_enemy(enemy): #characters.hellhound
     print("")
     print(f"{enemy.name} attacks with \"{enemy.weapon}\".")
-    characters.player.calc_hp(damage.rnd_dmg(enemy, weapons.weapon_enemy_1))
+    TwoWorlds.characters.player.calc_hp(TwoWorlds.damage.rnd_dmg(enemy, TwoWorlds.weapons.weapon_enemy_1))
     print("_____________________________________________________________")
-    if flee_mode == 1 and characters.player.hp < 10:
+    if flee_mode == 1 and TwoWorlds.characters.player.hp < 10:
         lost()
     else:
         aktion_player(enemy)

@@ -1,11 +1,11 @@
 # libraries
 import time
 import random
-import heal_items
-import experience
-import combat
-import weapons
-import characters
+import TwoWorlds.heal_items
+import TwoWorlds.experience
+import TwoWorlds.combat
+import TwoWorlds.weapons
+import TwoWorlds.characters
 from textwrap import dedent
 import inventory
 
@@ -217,11 +217,11 @@ class NoItemWorks(Scenes):
             "It won't work. I will tell you a story about this ancient oak, but first, tell me your name."
             """))
 
-        characters.player.name = input("> ")
+        TwoWorlds.characters.player.name = input("> ")
 
         time.sleep(3)
         print("")
-        print(f"\"{characters.player.name} is a beautyfull name. It's a pleasure to meet... ähmm .. hear you.")
+        print(f"\"{TwoWorlds.characters.player.name} is a beautyfull name. It's a pleasure to meet... ähmm .. hear you.")
         print("My name is Vaiana. So let me tell you the story.\"")
         return 11
 
@@ -302,7 +302,7 @@ class StoryOak(Scenes):
             You begin to lose your consciousness.
             """))
 
-        characters.player.calc_hp(-10)
+        TwoWorlds.characters.player.calc_hp(-10)
 
         print(dedent("""
             The last thing you recognize is Viana`s voice.
@@ -355,12 +355,12 @@ class StoryWakeUp(Scenes):
 
         print("")
         print("Do you want to eat the leaf now or put it in your bag?")
-        print(f"Your health points: {characters.player.hp}/{characters.player.hp_max}.")
+        print(f"Your health points: {TwoWorlds.characters.player.hp}/{TwoWorlds.characters.player.hp_max}.")
 
         while True:
             choice = input("> ").lower()
             if "eat" in choice:
-                characters.player.calc_hp(heal_items.green_leaf.heal)
+                TwoWorlds.characters.player.calc_hp(TwoWorlds.heal_items.green_leaf.heal)
                 return 13
             elif "bag" in choice:
                 print("\" Thank you. I will use it later.\"")
@@ -410,7 +410,7 @@ class LeaveOak(Scenes):
             After a few seconds you open your eyes. The leaf has changed its colour from green to red.
             """))
 
-        experience.exp(heal_items.red_leaf.ep)
+        TwoWorlds.experience.exp(TwoWorlds.heal_items.red_leaf.ep)
 
         print("")
 
@@ -433,7 +433,7 @@ class LeaveOak(Scenes):
         while True:
             choice = input("> ").lower()
             if "eat" in choice:
-                characters.player.calc_hp(heal_items.red_leaf.heal)
+                TwoWorlds.characters.player.calc_hp(TwoWorlds.heal_items.red_leaf.heal)
                 break
             elif "bag" in choice:
                 print("You put the leaf in your bag.")
@@ -481,10 +481,10 @@ class PassDevland(Scenes):
         while True:
             choice = input("> ").lower()
             if "fight" in choice:
-                combat.flee_mode = 1
-                weapons.applied_weapon = weapons.branch
-                weapons.weapon_enemy_1 = weapons.claw
-                combat.init_fight(2, characters.hellhound)
+                TwoWorlds.combat.flee_mode = 1
+                TwoWorlds.weapons.applied_weapon = TwoWorlds.weapons.branch
+                TwoWorlds.weapons.weapon_enemy_1 = TwoWorlds.weapons.claw
+                TwoWorlds.combat.init_fight(2, TwoWorlds.characters.hellhound)
                 return 16
             elif "flee" in choice:
                 return 15
@@ -518,7 +518,7 @@ class HiddenVillage(Scenes):
 
         print("")
         print("The door opens and an old woman steps in. She is maybe 80 years old.")    
-        print(f'"Calm down, {characters.player.name}. Viana is fine."')
+        print(f'"Calm down, {TwoWorlds.characters.player.name}. Viana is fine."')
         print(dedent("""
             "What happend?", you want to know.
             The old Lady answers with a gentle voice: "Our scouts were on patrol, as they heared you screaming.

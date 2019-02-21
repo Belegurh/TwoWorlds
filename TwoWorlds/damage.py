@@ -1,9 +1,9 @@
-import weapons
-import characters
+import TwoWorlds.weapons
+import TwoWorlds.characters
 import random
 
 def rnd_dmg(character, weapon):
-    dmg_max = (character.strength * -1) + weapon.demage
+    dmg_max = (character.strength * -1) + weapon.damage
     # print(f"max_dmg: {dmg_max}")
     dmg_min = int(dmg_max * 0.5)
     # print(f"min_dmg: {dmg_min}")

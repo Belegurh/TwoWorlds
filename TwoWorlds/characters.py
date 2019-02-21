@@ -1,4 +1,4 @@
-import char_dead
+import TwoWorlds.char_dead
 
 class Characters(object):
 
@@ -26,7 +26,7 @@ class Characters(object):
         elif self.hp + change_hp <= 0:
             self.hp += change_hp
             print(f"hp - {abs(change_hp)}")
-            char_dead.dead(self)
+            TwoWorlds.char_dead.dead(self)
         else:
             print(">>>failure, wrong hp! Please contact your admin!<<<")
 

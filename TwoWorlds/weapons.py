@@ -9,7 +9,7 @@ class Weapons:
     def __init__(self, name, weight, damage):
         self.name = name
         self.weight = weight
-        self.demage = damage
+        self.damage = damage
 
 # instances
 branch = Weapons("Branch", 2.4, -3)
