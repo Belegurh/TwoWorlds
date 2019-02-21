@@ -7,7 +7,7 @@ import TwoWorlds.combat
 import TwoWorlds.weapons
 import TwoWorlds.characters
 from textwrap import dedent
-import inventory
+import TwoWorlds.inventory
 
 
 # start screen, main menu, load next scene from save.txt
@@ -109,7 +109,7 @@ class Oak(Scenes):
             "It looks like a keyhole. Maybe I can stick something into it."
             You open your bag and search for something helpful.
             """))
-        print(f"\"Let's see... The following items are in my bag.\" {inventory.bag.list}")
+        print(f"\"Let's see... The following items are in my bag.\" {TwoWorlds.inventory.bag.list}")
         return 6 
 
 
@@ -139,12 +139,12 @@ class TryItemOak(Scenes):
         while True:
             item_oak = input("> ").lower()
 
-            if item_oak in inventory.bag.list:
+            if item_oak in TwoWorlds.inventory.bag.list:
                 item_1 = FalseItemOak(item_oak)
                 item_1.fail()
                 return 6
             else:
-                print(f" {item_oak} is not in your bag, please try {inventory.bag.list}.")
+                print(f" {item_oak} is not in your bag, please try {TwoWorlds.inventory.bag.list}.")
 
 
 class FalseItemOak(TryItemOak):
@@ -177,9 +177,9 @@ class SearchItemOak(Scenes):
                 choice = input("> ").lower()
 
                 if choice == "yes":
-                    inventory.bag.append_item(item)
+                    TwoWorlds.inventory.bag.append_item(item)
                     print("")
-                    print(f"The following items are in your bag now: {inventory.bag.list}")
+                    print(f"The following items are in your bag now: {TwoWorlds.inventory.bag.list}")
                     return 9
                 elif choice == "no":
                     print("ok, I will search something else.")
@@ -365,8 +365,8 @@ class StoryWakeUp(Scenes):
             elif "bag" in choice:
                 print("\" Thank you. I will use it later.\"")
                 print("You put the leaf in your bag.")
-                inventory.bag_new.append_item("green leaf")
-                print(f"The following items are in your bag now. {inventory.bag_new.list}")
+                TwoWorlds.inventory.bag_new.append_item("green leaf")
+                print(f"The following items are in your bag now. {TwoWorlds.inventory.bag_new.list}")
                 return 13
             else:
                 print("eat or bag?")
@@ -437,8 +437,8 @@ class LeaveOak(Scenes):
                 break
             elif "bag" in choice:
                 print("You put the leaf in your bag.")
-                inventory.bag_new.append_item("red leaf")
-                print(f"The following items are in your bag now. {inventory.bag_new.list}")
+                TwoWorlds.inventory.bag_new.append_item("red leaf")
+                print(f"The following items are in your bag now. {TwoWorlds.inventory.bag_new.list}")
                 break
             else:
                 print("eat or bag?")
